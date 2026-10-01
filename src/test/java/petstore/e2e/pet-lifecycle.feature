@@ -13,9 +13,7 @@ Feature: Pet lifecycle in PetStore
     # CREATE
     # ---------------------------------------------------------
 
-    * def createResult =
-      call read('classpath:petstore/operations/create-pet.feature')
-      { petId: '#(petId)', petName: '#(petName)' }
+    * def createResult = call read('classpath:petstore/operations/create-pet.feature') { petId: '#(petId)', petName: '#(petName)' }
 
     * def createdPet = createResult.createdPet
 
@@ -24,8 +22,7 @@ Feature: Pet lifecycle in PetStore
     # GET BY ID
     # ---------------------------------------------------------
 
-    * def getResult =
-      call read('classpath:petstore/operations/get-pet-by-id.feature')
+    * def getResult = call read('classpath:petstore/operations/get-pet-by-id.feature')
       """
       {
         petId: '#(petId)',
@@ -39,8 +36,7 @@ Feature: Pet lifecycle in PetStore
     # UPDATE
     # ---------------------------------------------------------
 
-    * def updateResult =
-      call read('classpath:petstore/operations/update-pet.feature')
+    * def updateResult = call read('classpath:petstore/operations/update-pet.feature')
       """
       {
         petId: '#(petId)',
@@ -55,8 +51,7 @@ Feature: Pet lifecycle in PetStore
     # FIND BY STATUS
     # ---------------------------------------------------------
 
-    * def findResult =
-      call read('classpath:petstore/operations/find-pet-by-status.feature')
+    * def findResult = call read('classpath:petstore/operations/find-pet-by-status.feature')
       """
       {
         petId: '#(petId)',
@@ -70,5 +65,4 @@ Feature: Pet lifecycle in PetStore
     # CLEANUP
     # ---------------------------------------------------------
 
-    * call read('classpath:petstore/operations/delete-pet.feature')
-      { petId: '#(petId)' }
+    * call read('classpath:petstore/operations/delete-pet.feature') { petId: '#(petId)' }
