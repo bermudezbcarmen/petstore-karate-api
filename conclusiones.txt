@@ -1,0 +1,41 @@
+CONCLUSIONES
+
+1. Se automatizó satisfactoriamente el flujo solicitado sobre Swagger PetStore utilizando Karate.
+
+2. El escenario automatizado cubre el ciclo completo requerido:
+
+- creación de mascota
+- consulta por ID
+- actualización
+- modificación del status a sold
+- consulta por status
+- validación de la mascota modificada
+
+3. Se utilizó una arquitectura basada en features reutilizables para separar las operaciones REST del flujo E2E principal.
+
+4. La separación entre configuración, operaciones, datos y validaciones permite reducir duplicación y facilita el mantenimiento.
+
+5. Los payloads fueron separados de la lógica de los escenarios para evitar duplicar estructuras JSON dentro de los archivos feature.
+
+6. Se generaron datos dinámicos para reducir posibles colisiones con información creada por otros usuarios.
+
+7. La prueba valida no solamente el código HTTP de las respuestas, sino también valores relevantes y consistencia de la información.
+
+8. El escenario principal mantiene trazabilidad sobre la misma mascota durante todo el flujo mediante el uso de un ID generado durante la ejecución.
+
+9. Se agregó una operación de limpieza al finalizar el escenario para reducir la contaminación de datos en el ambiente compartido.
+
+
+
+HALLAZGOS
+1. El endpoint:
+
+GET /pet/findByStatus
+
+retorna una colección de mascotas y no únicamente los registros creados durante la ejecución actual.
+
+Por esta razón no es seguro realizar validaciones utilizando posiciones fijas como:
+
+response[0]
+
+2 El metodo POST permite crear registros duplicados.
